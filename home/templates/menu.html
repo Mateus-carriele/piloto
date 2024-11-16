@@ -1,0 +1,31 @@
+<!-- saved from url=(0091)4a.html -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+   
+</head>
+<body>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a href="#" class="nav-link"><i class="fas fa-chart-bar"></i> <span>Views</span></a>
+            <ul class="submenu nav flex-column">
+                <li class="nav-item">
+                    <a href="{% url 'exibir_item' id=1 %}" class="nav-link">Exibir Item</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'dia_semana' dia=3 %}" class="nav-link">Dia da Semana</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'produtos' %}" class="nav-link">Produtos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'fomulario' %}" class="nav-link">Formulário Contato</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'fomulario2' %}" class="nav-link">Formulário Produto</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>
