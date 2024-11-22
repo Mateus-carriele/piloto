@@ -3,6 +3,7 @@ from django.shortcuts import render
 #forms.py
 from .forms import ContatoForm
 from .forms import FormProduto
+from .forms import ProdutoForm
 from django import forms
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -70,7 +71,7 @@ produtos_lista = [
     
 def produtos(request):
     contexto = {
-        'lista': produtos_lista,  # Use a lista global de produtos
+        'lista': produtos_lista,  
     }
     return render(request, 'produto/lista.html', contexto)
 
@@ -109,3 +110,32 @@ def excluir_produto(request, id):
     if produto:
         produtos_lista.remove(produto)  # Remove o produto da lista
     return redirect('produtos')  # Redireciona para a lista de produtos
+
+# View para ver os detalhes de um produto
+def ver_detalhes(request, id):
+    # Lógica para buscar o produto pelo ID
+    produto = next((p for p in produtos_lista if p['id'] == id), None)
+    return render(request, 'produto/detalhes.html', {'produto': produto})
+
+# View para editar um produto
+def editar_produto(request, id):
+    # Lógica para edição do produto
+    produto = next((p for p in produtos_lista if p['id'] == id), None)
+    if not produto:
+        return HttpResponse("Produto não encontrado", status=404)
+    
+    
+    
+    if request.method == 'POST':
+        # Atualiza os dados do formulário
+        form = ProdutoForm(request.POST)
+        if form.is_valid():
+            # Aqui, você atualizaria o produto no banco de dados
+            produto['nome'] = form.cleaned_data['nome']
+            produto['preco'] = form.cleaned_data['preco']
+            return redirect('produtos')
+    else:
+        # Preenche o formulário com os dados do produto
+        form = ProdutoForm(initial={'nome': produto['nome'], 'preco': produto['preco']})
+
+    return render(request, 'produto/editar.html', {'form': form})

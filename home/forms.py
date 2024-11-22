@@ -29,3 +29,15 @@ class FormProduto(forms.Form):
         label='Preço do Produto:',
         widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '0.00'})
     )
+class ProdutoForm(forms.Form):
+    nome = forms.CharField(
+        max_length=100,
+        label='Nome do Produto',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome do produto'})
+    )
+    preco = forms.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        label='Preço',
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '0.00'})
+    )

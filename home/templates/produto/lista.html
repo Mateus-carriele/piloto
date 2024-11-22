@@ -25,10 +25,26 @@
             <td>{{ produto.nome }}</td>
             <td>{{ produto.preco }}</td>
             <td>
+                
+                 <!-- Botão para ver detalhes -->
+                <button 
+                class="btn btn-info btn-sm" 
+                onclick="location.href='{% url 'ver_detalhes' produto.id %}'">
+                Ver Detalhes
+                </button>
+        
+                <!-- Botão para editar produto -->
+                <button 
+                class="btn btn-warning btn-sm" 
+                onclick="location.href='{% url 'editar_produto' produto.id %}'">
+                Editar Produto
+                
+                <!-- Botão para excluir -->
                 <form method="POST" action="{% url 'excluir_produto' produto.id %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Excluir</button> <!-- Usando um botão para excluir -->
+                    <button style="margin: 5px;" type="submit" class="btn btn-danger">Excluir</button> <!-- Usando um botão para excluir -->
                 </form>
+                </button>
             </td>
         </tr>
         {% endfor %}

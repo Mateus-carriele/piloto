@@ -1,4 +1,4 @@
-# urls.py
+
 from django.urls import path
 from . import views
 
@@ -10,4 +10,6 @@ urlpatterns = [
     path('produtos/fomulario_contato/', views.contato, name='fomulario'),
     path('produtos/fomulario_produto/', views.produto, name='fomulario2'), 
     path('produtos/excluir/<int:id>/', views.excluir_produto, name='excluir_produto'),     
+    path('produtos/ver/<int:id>/', views.ver_detalhes, name='ver_detalhes'),
+    path('produtos/editar/<int:id>/', views.editar_produto, name='editar_produto'),
 ]
